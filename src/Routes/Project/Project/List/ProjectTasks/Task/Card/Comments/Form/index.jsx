@@ -16,15 +16,11 @@ const CommentForm = ({ task }) => {
   const dispatch = useDispatch();
   const [displayCommentForm, setCommentForm] = useState(false);
 
-  const displayForm = () => {
-    setCommentForm(!displayCommentForm);
-  };
-
   return (
     <div>
       {!displayCommentForm && (
         <div
-          onClick={() => displayForm()}
+          onClick={() => setCommentForm(!displayCommentForm)}
           style={{ width: '100%', border: '1px solid red' }}
         >
           <span>Add a comment</span>
@@ -56,7 +52,12 @@ const CommentForm = ({ task }) => {
               <MyTextarea name='message' placeholder='Add comment...' />
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <CancelButton onClick={() => displayForm()} />
+              <button onClick={() => setCommentForm(!displayCommentForm)}>
+                cancel
+              </button>
+              {/* <CancelButton
+                onClick={() => setCommentForm(!displayCommentForm)}
+              /> */}
               <CommentButton />
             </div>
           </Form>

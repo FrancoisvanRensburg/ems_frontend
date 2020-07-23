@@ -13,11 +13,9 @@ import {
   CommentThreadContainer,
 } from './Styles';
 
-const TaskCommentBox = ({ task }) => {
-  // const [displayCommentForm, setCommentForm] = useState(false);
-
+const TaskCommentBox = () => {
   const dispatch = useDispatch();
-  //   const task = useSelector((store) => store.project.task);
+  const task = useSelector((store) => store.project.task);
   useEffect(() => {
     dispatch(getTaskComments(task._id));
   }, [dispatch]);

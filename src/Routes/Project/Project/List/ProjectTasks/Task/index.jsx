@@ -3,7 +3,7 @@ import Moment from 'react-moment';
 
 import ProgressBar from '../../../../../../shared/components/ProgressBar';
 
-import TaskModal from './TaskModal';
+import TaskModal from './Card';
 
 import { Tcell } from '../Styles';
 

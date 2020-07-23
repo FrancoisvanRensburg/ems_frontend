@@ -49,6 +49,10 @@ const TaskDetail = ({ task, project }) => {
   //   dispatch(getProjectTasks(project._id));
   // }, [dispatch]);
   const tasks = useSelector((store) => store.project.tasks);
+  const tsk = useSelector((store) => store.project.task);
+  {
+    tsk !== null && console.log(tsk.taskname);
+  }
 
   return (
     <div>
@@ -68,28 +72,27 @@ const TaskDetail = ({ task, project }) => {
               <Formik
                 enableReinitialize={true}
                 initialValues={{
-                  taskname:
-                    task === null || !task.taskname ? '' : task.taskname,
-                  assignee:
-                    task === null || !task.assignee ? '' : task.assignee,
+                  taskname: tsk === null || !tsk.taskname ? '' : tsk.taskname,
+                  assignee: tsk === null || !tsk.assignee ? '' : tsk.assignee,
                   description:
-                    task === null || !task.description ? '' : task.description,
+                    tsk === null || !tsk.description ? '' : tsk.description,
                   actualstartdate:
-                    task === null || !task.actualstartdate
+                    tsk === null || !tsk.actualstartdate
                       ? ''
-                      : moment(task.actualstartdate),
+                      : moment(tsk.actualstartdate),
                   actualenddate:
-                    task === null || !task.actualenddate
+                    tsk === null || !tsk.actualenddate
                       ? ''
-                      : moment(task.actualenddate),
-                  priority:
-                    task === null || !task.priority ? '' : task.priority,
-                  effort: task === null || !task.effort ? '' : task.effort,
+                      : moment(tsk.actualenddate),
+                  priority: tsk === null || !tsk.priority ? '' : tsk.priority,
+                  effort: tsk === null || !tsk.effort ? '' : tsk.effort,
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                   {
-                    task !== null && dispatch(updateTask(task._id, values));
+                    tsk !== null && dispatch(updateTask(tsk._id, values));
                   }
+                  dispatch(getProjectTasks(project._id));
+                  setToggleModal(!toggleModal);
                   setSubmitting(false);
                 }}
               >
@@ -121,6 +124,7 @@ const TaskDetail = ({ task, project }) => {
                         />
                       </div>
                     </div>
+                    <SubmitButton text={'Update'} />
                   </div>
                   <div style={{ display: 'flex' }}>
                     <div
@@ -140,7 +144,8 @@ const TaskDetail = ({ task, project }) => {
                         <label htmlFor='description'>Description</label>
                         <MyTextarea
                           name='description'
-                          placeholder='Add a description'
+                          type='text'
+                          // placeholder='Add a description'
                         />
                       </div>
                     </div>
@@ -216,7 +221,11 @@ const TaskDetail = ({ task, project }) => {
               </Formik>
               <div style={{ display: 'flex', gap: 30 }}>
                 <div style={{ width: '65%' }}>
-                  <TaskCommentBox task={task} />
+                  {tsk === null ? (
+                    <div>Loading...</div>
+                  ) : (
+                    <TaskCommentBox task={tsk} />
+                  )}
                 </div>
                 <div style={{ width: '25%' }}>
                   <div>

@@ -19,6 +19,7 @@ const TaskCommentBox = () => {
     dispatch(getTaskComments(task._id));
   }, [dispatch]);
   const comments = useSelector((store) => store.project.taskComments);
+  console.log(task);
   return (
     <CommentSection>
       <CommentFormSection style={{ width: '50%' }}>

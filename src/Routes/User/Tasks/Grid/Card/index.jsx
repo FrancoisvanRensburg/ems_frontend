@@ -34,6 +34,7 @@ const TaskCard = ({ task }) => {
   const endDate = moment(task.actualenddate);
   const startDate = moment(task.actualstartdate);
   const currentDate = moment(Date.now());
+  // console.log(tsk.taskname);
 
   const durCalc = () => {
     return Math.round(endDate.diff(startDate) / (3600 * 1000) / 24 + 1).toFixed(
