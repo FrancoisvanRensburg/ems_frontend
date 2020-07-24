@@ -18,21 +18,31 @@ const Dropdown = () => {
       style={{
         width: '300px',
         height: 'auto',
+        overflow: 'scroll',
+        maxHeight: '500px',
+        zIndex: '1005',
         backgroundColor: 'black',
         border: '1px solid red',
         boxSizing: 'border-box',
       }}
     >
-      {notifications === null ? (
-        <div></div>
-      ) : (
-        notifications.map((notification) => (
-          <NotificationCard
-            key={notification._id}
-            notification={notification}
-          />
-        ))
-      )}
+      <div
+        style={{
+          overflowY: 'scroll',
+          height: '100%',
+        }}
+      >
+        {notifications === null ? (
+          <div></div>
+        ) : (
+          notifications.map((notification) => (
+            <NotificationCard
+              key={notification._id}
+              notification={notification}
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 };

@@ -16,7 +16,7 @@ import Bubble from './Notifications/Actions/Bubble';
 // Styled components
 import { NavWrapper, NotLogoLinks, StyledLink } from './Styles';
 
-const NavbarTop = ({ isAuthenticated, loading, logout, history }) => {
+const NavbarTop = ({ isAuthenticated, loading, logout, history, user }) => {
   const dispatch = useDispatch();
 
   const onLogout = () => {
@@ -47,7 +47,9 @@ const NavbarTop = ({ isAuthenticated, loading, logout, history }) => {
           </Link>
         )}
         {/* {<Fragment>{authLinks}</Fragment>} */}
-        {!loading && <Fragment>{isAuthenticated && authLinks}</Fragment>}
+        {!loading && user !== null && (
+          <Fragment>{isAuthenticated && authLinks}</Fragment>
+        )}
       </NavWrapper>
     </Fragment>
   );
@@ -57,9 +59,10 @@ NavbarTop.propTypes = {
   logout: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ auth: { isAuthenticated, loading } }) => ({
+const mapStateToProps = ({ auth: { isAuthenticated, loading, user } }) => ({
   isAuthenticated,
   loading,
+  user,
 });
 
 export default connect(mapStateToProps, { logout })(withRouter(NavbarTop));

@@ -11,6 +11,7 @@ import Admin from '../Routes/Admin';
 import Projects from '../Routes/Projects';
 import Project from '../Routes/Project/Project';
 import User from '../Routes/User';
+import TaskDetail from '../Routes/ApprovalsAndDetail/Detail/Task';
 
 const Routes = () => {
   return (
@@ -23,6 +24,7 @@ const Routes = () => {
         <PrivateRoute path='/project/:projectId' component={Project} />
         <PrivateRoute path='/projects' component={Projects} />
         <PrivateRoute path='/user' component={User} />
+        <PrivateRoute path='/task/:taskId' exact component={TaskDetail} />
       </Switch>
     </Router>
   );
