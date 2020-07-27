@@ -5,6 +5,10 @@ import { getUserActionNotifications } from '../../../../../../Redux/actions/noti
 
 import NotificationCard from './NotificationCard';
 
+import { ReactComponent as Logo } from '../../../../../../App/assets/images/logo.svg';
+
+import { NotificationDropdown, DropdownContainer } from './Styles';
+
 const Dropdown = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,36 +18,40 @@ const Dropdown = () => {
     (store) => store.notification.actionNotifications
   );
   return (
-    <div
-      style={{
-        width: '300px',
-        height: 'auto',
-        overflow: 'scroll',
-        maxHeight: '500px',
-        zIndex: '1005',
-        backgroundColor: 'black',
-        border: '1px solid red',
-        boxSizing: 'border-box',
-      }}
-    >
-      <div
-        style={{
-          overflowY: 'scroll',
-          height: '100%',
-        }}
-      >
-        {notifications === null ? (
-          <div></div>
-        ) : (
-          notifications.map((notification) => (
-            <NotificationCard
-              key={notification._id}
-              notification={notification}
-            />
-          ))
-        )}
-      </div>
-    </div>
+    <DropdownContainer>
+      <NotificationDropdown>
+        <div
+          style={{
+            // overflowY: 'scroll',
+            height: '100%',
+          }}
+        >
+          {notifications === null || notifications.length === 0 ? (
+            <div>
+              <div
+                style={{
+                  display: 'block',
+                  margin: '50% 0',
+                  textAlign: 'center',
+                }}
+              >
+                <p>You have no new notifications</p>
+                <div>
+                  <Logo />
+                </div>
+              </div>
+            </div>
+          ) : (
+            notifications.map((notification) => (
+              <NotificationCard
+                key={notification._id}
+                notification={notification}
+              />
+            ))
+          )}
+        </div>
+      </NotificationDropdown>
+    </DropdownContainer>
   );
 };
 

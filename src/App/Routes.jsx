@@ -24,7 +24,11 @@ const Routes = () => {
         <PrivateRoute path='/project/:projectId' component={Project} />
         <PrivateRoute path='/projects' component={Projects} />
         <PrivateRoute path='/user' component={User} />
-        <PrivateRoute path='/task/:taskId' exact component={TaskDetail} />
+        <PrivateRoute
+          path='/notification/:taskId'
+          exact
+          component={TaskDetail}
+        />
       </Switch>
     </Router>
   );
