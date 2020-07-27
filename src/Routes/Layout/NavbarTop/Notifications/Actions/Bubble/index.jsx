@@ -18,7 +18,7 @@ const Bubble = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actionNotificationCount());
-  }, dispatch);
+  }, [dispatch]);
   // const nots = useSelector(
   //   (store) => store.notification.actionNotCount.notcount
   // );

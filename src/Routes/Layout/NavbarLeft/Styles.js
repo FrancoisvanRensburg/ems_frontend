@@ -61,6 +61,7 @@ export const New = styled.div`
   padding: 15px 10px;
 
   &:hover {
+    cursor: pointer;
     background-color: #1f1e1e;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.55),
       inset -1px -2px 2px rgba(0, 0, 0, 0.3),

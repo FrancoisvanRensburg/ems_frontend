@@ -28,13 +28,9 @@ const CreatProject = ({ history }) => {
   const project = useSelector((store) => store.project.project);
   const [displayProjectDescription, toggleProjectDescription] = useState(false);
 
-  // {
-  //   project !== null || (project._id && console.log(project._id));
-  // }
-
-  // const projectPaths = () => {
-  //   history.push(`/project/${project._id}/setup`);
-  // };
+  const projectPaths = () => {
+    history.push(`/project/${project._id}/setup`);
+  };
 
   return (
     <div>
@@ -70,15 +66,18 @@ const CreatProject = ({ history }) => {
           onSubmit={(values, { setSubmitting }) => {
             dispatch(createProject(values));
             setSubmitting(false);
+            projectPaths();
           }}
         >
-          <Form style={{ padding: '20px' }}>
-            <div style={{ display: 'flex' }}>
+          <Form>
+            <div style={{ display: 'flex', margin: '15px 0 0 0' }}>
               <div style={{ display: 'flex', width: '63%' }}>
                 <label style={{ margin: '0 20px 0 0' }}>Project name:</label>
                 <MyTextInput name='projectname' placeholder='Project name' />
               </div>
-              <div style={{ display: 'flex', margin: '0 0 0 40px' }}>
+              <div
+                style={{ display: 'flex', width: '20%', margin: '0 0 0 40px' }}
+              >
                 <label style={{ margin: '0 20px 0 0' }}>Project code</label>
                 <MyTextInput name='projectcode' placeholder='Project code' />
               </div>
@@ -99,7 +98,7 @@ const CreatProject = ({ history }) => {
                   <label htmlFor='description' style={{ margin: '0 15px 0 0' }}>
                     Description
                   </label>
-                  <div style={{ width: '100%', height: '150px' }}>
+                  <div style={{ width: '84.5%', height: '150px' }}>
                     <MyTextarea
                       name='description'
                       placeholder='Project description'
@@ -109,7 +108,13 @@ const CreatProject = ({ history }) => {
               </Fragment>
             )}
             <SubmitSection>
-              <SubmitButton text={'create'} />
+              <SubmitButton
+                // onClick={[
+                //   () => modalRef.current.close(),
+                //   () => history.push(`/project/${project._id}/setup`),
+                // ]}
+                text={'create'}
+              />
             </SubmitSection>
           </Form>
         </Formik>
