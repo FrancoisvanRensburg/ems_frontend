@@ -36,9 +36,12 @@ export const GET_TASK = 'GET_TASK';
 export const GET_PROJECT = 'GET_PROJECT';
 export const GET_PROJECTS = 'GET_PROJECTS';
 export const PROJECT_ERROR = 'PROJECT_ERROR';
+export const GET_CONTRIBUTORS = 'GET_CONTRIBUTORS';
 export const ADD_CONTRIBUTOR = 'ADD_CONTRIBUTOR';
 export const PROJECT_MISC = 'PROJECT_MISC';
 export const GET_TASKS_PROJECT = 'GET_TASKS_PROJECT';
+export const GET_PROJECT_CLIENT = 'GET_PROJECT_CLIENT';
+export const ADD_PROJECT_CLIENT = 'ADD_PROJECT_CLIENT';
 
 // Commentary
 export const ADD_TASK_COMMENT = 'ADD_COMMENT';

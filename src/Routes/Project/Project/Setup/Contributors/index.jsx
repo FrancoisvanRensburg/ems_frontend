@@ -2,7 +2,10 @@ import React, { Fragment, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { updateProjectContributors } from '../../../../../Redux/actions/projectActions';
+import {
+  updateProjectContributors,
+  getProjectContributors,
+} from '../../../../../Redux/actions/projectActions';
 import { getAllUsers } from '../../../../../Redux/actions/userActions';
 
 import CustomDropdown from '../../../../../shared/components/Dropdown';
@@ -16,13 +19,17 @@ import {
   ListItem,
 } from './Styles';
 
-const ProjectContributors = (projectId) => {
+const ProjectContributors = ({ projectId }) => {
   const project = useSelector((store) => store.project.project);
   const users = useSelector((store) => store.user.users);
+  const projectContributors = useSelector(
+    (store) => store.project.projectContributors
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllUsers());
+    dispatch(getProjectContributors(projectId));
   }, [dispatch]);
 
   return (
@@ -55,10 +62,10 @@ const ProjectContributors = (projectId) => {
         </Form>
       </Formik>
       <ContributorList>
-        {project.contributors === null ? (
+        {projectContributors === null || projectContributors.length === 0 ? (
           <li></li>
         ) : (
-          project.contributors.map((contributor) => (
+          projectContributors.map((contributor) => (
             <ListItem key={contributor._id}>{contributor.name}</ListItem>
           ))
         )}

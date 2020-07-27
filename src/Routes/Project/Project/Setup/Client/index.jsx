@@ -3,7 +3,11 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { updateProjectSetup } from '../../../../../Redux/actions/projectActions';
+import {
+  updateProjectSetup,
+  getProjectClient,
+  addProjectClient,
+} from '../../../../../Redux/actions/projectActions';
 import { getClients } from '../../../../../Redux/actions/clientActions';
 
 import { MyTextInput } from '../../../../../shared/components/Forms';
@@ -12,38 +16,40 @@ import { SubmitButton } from '../../../../../shared/components/Buttons';
 
 import { ClientsContainer, Header, SubmitSection } from './Styles';
 
-const ProjectClient = () => {
-  const project = useSelector((store) => store.project.project);
+const ProjectClient = ({ projectId }) => {
+  // const project = useSelector((store) => store.project.project);
   const clients = useSelector((store) => store.client.clients);
+
   const loading = useSelector((store) => store.client.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getClients());
+    dispatch(getProjectClient(projectId));
   }, [dispatch]);
+  const client = useSelector((store) => store.project.client);
   return (
     <ClientsContainer>
       <Header>Clients</Header>
       <Formik
         enableReinitialize={true}
         initialValues={{
-          client: project === null || !project.client ? '' : project.client,
+          client: client === null || !client.client ? '' : client.client,
           contactname:
-            project === null || !project.contactname ? '' : project.contactname,
+            client === null || !client.contactname ? '' : client.contactname,
           contactnumber:
-            project === null || !project.contactnumber
+            client === null || !client.contactnumber
               ? ''
-              : project.contactnumber,
+              : client.contactnumber,
           contactemail:
-            project === null || !project.contactemail
-              ? ''
-              : project.contactemail,
+            client === null || !client.contactemail ? '' : client.contactemail,
         }}
         validationSchema={Yup.object({
           contactemail: Yup.string().email('Invalid email address'),
         })}
         onSubmit={(values, { setSubmitting }) => {
-          dispatch(updateProjectSetup(project._id, values));
+          dispatch(addProjectClient(projectId, values));
+          // alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }}
       >

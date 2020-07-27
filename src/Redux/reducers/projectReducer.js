@@ -9,6 +9,9 @@ import {
   ADD_PROJECT_COMMENT,
   GET_PROJECT_COMMENTS,
   GET_TASK_COMMENTS,
+  GET_CONTRIBUTORS,
+  GET_PROJECT_CLIENT,
+  ADD_PROJECT_CLIENT,
   ADD_CONTRIBUTOR,
   PROJECT_MISC,
   GET_TASKS_PROJECT,
@@ -32,6 +35,8 @@ const initialState = {
   sections: [],
   section: null,
   secionTasks: [],
+  projectContributors: [],
+  client: null,
 };
 
 export default function (state = initialState, action) {
@@ -48,6 +53,18 @@ export default function (state = initialState, action) {
       return {
         ...state,
         projects: payload,
+        loading: false,
+      };
+    case GET_PROJECT_CLIENT:
+      return {
+        ...state,
+        client: payload,
+        loading: false,
+      };
+    case ADD_PROJECT_CLIENT:
+      return {
+        ...state,
+        client: payload,
         loading: false,
       };
     case GET_TASK:
@@ -82,10 +99,12 @@ export default function (state = initialState, action) {
         project: { ...state.project, projectmanager: payload },
         loading: false,
       };
+    case GET_CONTRIBUTORS:
     case ADD_CONTRIBUTOR:
       return {
         ...state,
-        project: { ...state.project, contributors: payload },
+        // project: { ...state.project, contributors: payload },
+        projectContributors: payload,
         // contributors: payload,
         loading: false,
       };

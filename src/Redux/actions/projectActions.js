@@ -10,7 +10,10 @@ import {
   ADD_TASK_COMMENT,
   ADD_PROJECT_COMMENT,
   GET_PROJECT_COMMENTS,
+  GET_PROJECT_CLIENT,
+  ADD_PROJECT_CLIENT,
   GET_TASKS_PROJECT,
+  GET_CONTRIBUTORS,
   ADD_CONTRIBUTOR,
   PROJECT_MISC,
   GET_TASK_COMMENTS,
@@ -132,6 +135,61 @@ export const updateTask = (taskId, values) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: TASK_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const getProjectClient = (projectId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/projects/client/${projectId}`);
+    dispatch({
+      type: GET_PROJECT_CLIENT,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const addProjectClient = (projectId, values) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'appllication/json',
+      },
+    };
+    const res = await axios.post(
+      `/api/projects/client/${projectId}`,
+      values,
+      config
+    );
+    dispatch({
+      type: ADD_PROJECT_CLIENT,
+      payload: res.data,
+    });
+    console.log(res.data);
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const getProjectContributors = (projectId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/projects/contributors/${projectId}`);
+    dispatch({
+      type: GET_CONTRIBUTORS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROJECT_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

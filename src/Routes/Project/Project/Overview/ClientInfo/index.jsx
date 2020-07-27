@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { getProjectClient } from '../../../../../Redux/actions/projectActions';
+
 import {
   ClientWrapper,
   ComponentHeader,
