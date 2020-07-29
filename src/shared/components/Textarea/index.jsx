@@ -1,47 +1,30 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { useFormikContext, useField } from 'formik';
 
-import { StyledTextarea, TextareaElement } from './Styles';
+import { StyledErrorMessage, StyledLabel, StyledTextarea } from './Styles';
 
-const propTypes = {
-  className: PropTypes.string,
-  width: PropTypes.number,
-  rows: PropTypes.number,
-};
+const TextareaField = ({ label, ...props }) => {
+  const { setFieldTouched, handleChange, submitForm } = useFormikContext();
+  const [field, meta] = useField(props);
 
-const defaultProps = {
-  className: undefined,
-  value: '',
-  name: '',
-  width: 100,
-  height: 50,
-  rows: 2,
-};
-
-const Textarea = (props, className) => {
-  const [value, setValue] = useState('');
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-    props.onChange(event.target.name, event.target.value);
-  };
+  function updateBlur() {
+    setFieldTouched(props.name, true);
+    submitForm();
+  }
   return (
-    <StyledTextarea className={className}>
-      <TextareaElement
-        type={props.type}
-        name={props.name}
-        defaultValue={props.defaultValue}
-        value={props.value ? props.value : value}
-        width={props.width}
-        height={props.height}
-        placeholder={props.placeholder}
-        onChange={(e) => handleChange(e)}
+    <>
+      {label && <StyledLabel htmlFor={props.id}>{label}</StyledLabel>}
+      <StyledTextarea
+        {...field}
+        {...props}
+        onBlur={updateBlur}
+        onChange={handleChange}
       />
-    </StyledTextarea>
+      {meta.touched && meta.error ? (
+        <StyledErrorMessage>{meta.error}</StyledErrorMessage>
+      ) : null}
+    </>
   );
 };
 
-Textarea.propTypes = propTypes;
-Textarea.defaultProps = defaultProps;
-
-export default Textarea;
+export default TextareaField;

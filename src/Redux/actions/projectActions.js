@@ -7,6 +7,7 @@ import {
   ADD_TASK,
   TASK_ERROR,
   GET_TASK,
+  GET_TASK_NAME,
   ADD_TASK_COMMENT,
   ADD_PROJECT_COMMENT,
   GET_PROJECT_COMMENTS,
@@ -108,6 +109,30 @@ export const getTask = (taskId) => async (dispatch) => {
 
     dispatch({
       type: GET_TASK,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: TASK_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const updateTaskName = (taskId, values) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const res = await axios.put(
+      `/api/tasks/taskname/${taskId}`,
+      values,
+      config
+    );
+    dispatch({
+      tpye: GET_TASK_NAME,
       payload: res.data,
     });
   } catch (err) {
@@ -405,6 +430,32 @@ export const addProjectSection = (projectId, values) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROJECT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const addTaskInSection = (taskId, values) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const res = await axios.post(
+      `/api/tasks/sections/${taskId}`,
+      values,
+      config
+    );
+
+    dispatch({
+      type: ADD_SECTION_TO_TASK,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: TASK_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

@@ -31,6 +31,7 @@ export const CLEAR_USER = 'CLEAR_USER';
 export const ADD_TASK = 'ADD_TASK';
 export const TASK_ERROR = 'TASK_ERROR';
 export const GET_TASK = 'GET_TASK';
+export const GET_TASK_NAME = 'GET_TASK_NAME';
 
 // Projects
 export const GET_PROJECT = 'GET_PROJECT';

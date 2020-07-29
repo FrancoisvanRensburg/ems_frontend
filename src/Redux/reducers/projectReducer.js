@@ -5,6 +5,7 @@ import {
   ADD_TASK,
   TASK_ERROR,
   GET_TASK,
+  GET_TASK_NAME,
   ADD_TASK_COMMENT,
   ADD_PROJECT_COMMENT,
   GET_PROJECT_COMMENTS,
@@ -70,6 +71,13 @@ export default function (state = initialState, action) {
     case GET_TASK:
       return {
         ...state,
+        task: payload,
+        loading: false,
+      };
+    case GET_TASK_NAME:
+      return {
+        ...state,
+        // task: { ...state.task, taskname: payload },
         task: payload,
         loading: false,
       };
@@ -145,6 +153,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         error: payload,
+        loading: false,
+      };
+    case ADD_SECTION_TO_TASK:
+      return {
+        ...state,
+        task: { ...state.task, section: payload },
         loading: false,
       };
     default:

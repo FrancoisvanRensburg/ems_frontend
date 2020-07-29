@@ -26,17 +26,29 @@ const StyledErrorMessage = styled.div`
 // Styles for date picker is done in react-datepicker node-modules
 
 export const DatePickerField = ({ ...props }) => {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue, setFieldTouched, submitForm } = useFormikContext();
   const [field, meta] = useField(props);
+
+  function handleDateChange(val) {
+    setFieldValue(field.name, val);
+  }
+
+  function updateBlur() {
+    setFieldTouched(field.name, true);
+    submitForm();
+  }
+  console.log(() => updateBlur());
   return (
     <>
       <DatePickerStyled
         {...field}
         {...props}
         selected={(field.value && new Date(field.value)) || null}
-        onChange={(val) => {
-          setFieldValue(field.name, val);
-        }}
+        onBlur={updateBlur}
+        onChange={handleDateChange}
+        // onChange={(val) => {
+        //   setFieldValue(field.name, val);
+        // }}
         dateFormat='MMMM d, yyyy'
       />
       {meta.touched && meta.error ? (
