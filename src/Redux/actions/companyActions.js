@@ -6,6 +6,7 @@ import {
   COMPANY_ERROR,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  GET_COMPANY_USERS,
 } from './types';
 
 export const getCurrentCompany = () => async (dispatch) => {
@@ -68,6 +69,22 @@ export const registerUser = (values) => async (dispatch) => {
     }
     dispatch({
       type: USER_REGISTER_FAIL,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const getCompanyUsers = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/company/users');
+
+    dispatch({
+      type: GET_COMPANY_USERS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: COMPANY_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
