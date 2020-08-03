@@ -13,6 +13,7 @@ export const Container = styled.div`
   background-color: ${color.backgroundMedium};
   height: auto;
   min-height: 600px;
+  min-width: 1330px;
   padding: 20px;
   border-radius: ${radius.containerRadius};
   box-shadow: ${shadow.container};

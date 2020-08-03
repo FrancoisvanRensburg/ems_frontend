@@ -18,7 +18,16 @@ export const color = {
   textSubHeading: 'rgba(255, 255, 255, 0.8)',
   textTitle: 'rgba(255, 255, 255, 0.7)',
   textParagraph: 'rgba(255, 255, 255, 0.6)',
+  textDim: 'rgba(255, 255, 255, 0.5)',
   textDark: '#161616',
+
+  logoPrimaryBlue: 'rgba(33, 33, 79, 0.4)',
+  logoPrimaryPink: 'rgba(255, 0, 85, 0.4)',
+  logoPrimaryAmber: 'rgba(254, 184, 0, 0.4)',
+  logoPrimaryGreen: 'rgba(0, 236, 126, 0.4)',
+  logoPrimaryPurpleLight: 'rgba(155, 110, 255, 0.4)',
+  logoPrimaryPurple: 'rgba(113, 50, 255, 0.4)',
+  logoPurple: 'rgba(155, 110, 225, 0.4)',
 
   textHoverAmber: '#feb800',
 

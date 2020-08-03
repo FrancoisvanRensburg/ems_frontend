@@ -4,6 +4,7 @@ import {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
   GET_COMPANY_USERS,
+  ADD_COMPANY_USER,
 } from '../actions/types';
 
 const initialState = {
@@ -37,18 +38,12 @@ export default function (state = initialState, action) {
         company: { ...state.company, employees: payload },
         loading: false,
       };
-    // case USER_REGISTER_SUCCESS:
-    //   const newArr = company.employees.reduce((acc, curr, i) => {
-    //     if (!(i % size)) {
-    //       acc.push(employees.slice(i, i + size));
-    //     }
-    //     return acc;
-    //   }, [])
-    //   return {
-    //     ...state,
-    //     company: { ...state.company, employees: payload },
-    //     loading: false,
-    //   };
+    case ADD_COMPANY_USER:
+      return {
+        ...state,
+        employees: payload,
+        loading: false,
+      };
     case USER_REGISTER_FAIL:
       return {
         ...state,

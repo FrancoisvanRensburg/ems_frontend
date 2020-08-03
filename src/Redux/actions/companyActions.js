@@ -7,6 +7,7 @@ import {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
   GET_COMPANY_USERS,
+  ADD_COMPANY_USER,
 } from './types';
 
 export const getCurrentCompany = () => async (dispatch) => {
@@ -85,6 +86,33 @@ export const getCompanyUsers = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: COMPANY_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const addCompanyUser = (values) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const res = await axios.post('/api/register/newuser', values, config);
+
+    dispatch({
+      type: ADD_COMPANY_USER,
+      payload: res.data,
+    });
+  } catch (err) {
+    const errors = err.response.errors;
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'red')));
+    }
+
+    dispatch({
+      type: USER_REGISTER_FAIL,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

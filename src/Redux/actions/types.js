@@ -67,3 +67,4 @@ export const GET_TASKS_PER_SECTION = 'GET_TASKS_PER_SECTION';
 
 // Company
 export const GET_COMPANY_USERS = 'GET_COMPANY_USERS';
+export const ADD_COMPANY_USER = 'ADD_COMPANY_USER';

@@ -3,7 +3,10 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { registerUser } from '../../../../Redux/actions/companyActions';
+import {
+  registerUser,
+  addCompanyUser,
+} from '../../../../Redux/actions/companyActions';
 
 import { MyTextInput, MySelect } from '../../../../shared/components/Forms';
 import CustomDropdown from '../../../../shared/components/Dropdown';
@@ -61,7 +64,8 @@ const AddUser = () => {
             .min(4, 'Must be at least four characters'),
         })}
         onSubmit={(values, { resetForm }) => {
-          dispatch(registerUser(values));
+          // dispatch(registerUser(values));
+          dispatch(addCompanyUser(values));
           resetForm({});
         }}
       >

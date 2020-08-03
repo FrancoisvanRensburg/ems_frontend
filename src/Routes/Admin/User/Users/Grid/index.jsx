@@ -8,26 +8,36 @@ import {
 
 import UserCard from './Card';
 
+import { GridContainer } from './Styles';
+
 const Grid = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCurrentCompany());
     dispatch(getCompanyUsers());
   }, [dispatch]);
-  const company = useSelector((store) => store.company.company);
   const users = useSelector((store) => store.company.employees);
   return (
-    <div>
+    <GridContainer>
       <h1>This is to check the grid</h1>
-      <ul>
-        {company !== null &&
-          company.employees.slice(0, 5).map((employee) => (
-            <li>
-              <UserCard key={employee._id} user={employee} />
-            </li>
+      <div>
+        {users !== null &&
+          users.map((userArr, index) => (
+            <div
+              style={{
+                display: 'flex',
+                gap: 20,
+                margin: '10px 0',
+                boxSizing: 'border-box',
+              }}
+              key={index}
+            >
+              {userArr.map((user) => (
+                <UserCard key={user._id} user={user} />
+              ))}
+            </div>
           ))}
-      </ul>
-    </div>
+      </div>
+    </GridContainer>
   );
 };
 
