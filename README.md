@@ -2,7 +2,7 @@
 
 <div align='center'>Auto formatted with Prettier, not yet tested</div>
 
-<div>To be used in conjunction with the backend <a href="https://github.com/FrancoisvanRensburg/ems_frontend.git">Node Backend</a></div>
+<div>To be used in conjunction with the backend <a href="https://github.com/FrancoisvanRensburg/ems_backend.git">Node Backend</a></div>
 
 ## What is this and who is this for 🤷‍♀️
 
