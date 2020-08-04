@@ -1,68 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align='center'>A simplified version of an inhouse enterprise management system build with a nodeJS backend and a React frontend</h1>
 
-## Available Scripts
+<div align='center'>Auto formatted with Prettier, not yet tested</div>
 
-In the project directory, you can run:
+<div>To be used in conjunction with the backend <a href="https://github.com/FrancoisvanRensburg/ems_frontend.git">Node Backend</a></div>
 
-### `npm start`
+## What is this and who is this for 🤷‍♀️
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I am a chemical engineer turned management consultant turned web developer that realised that there are no business vision, resource and project management tools available that is either not scalable, doesn't require a tech wizz to set up, keeps track of a company vision and manages resources effectively available that can manage projects in either traditional prince2 and agile methodologies.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+This public repo, built in my spare time, is a section of the project to showcase my web development abilities. It’s a very good example of a modern, real-world, web development codebase. This is the backend, built with express and mongoDB.
 
-### `npm test`
+There are many showcase/example React projects out there but most of them are way too simple. I like to think that this codebase contains enough complexity to offer valuable insights to React developers of all skill levels while still being _relatively_ easy to understand.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Proven, scalable, and easy to understand project structure
+- Written in modern React, only functional components with hooks, no class based components were used
+- A variety of custom light-weight UI components such as datepicker, modal, various form elements etc
+- React state is managed with modern redux and React Context
+- Local state is implemented using modern redux hooks like useDispatch and useSelector
+- Grannular permissions for set usertypes
+- Bootstrapped with create-react-app
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setting up dev environment
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Clone the repository
+- Frontend and backend to be run independently
+- Run npm install in root directory
+- Ensure that proxy in package.json is set up to "proxy": http://localhost:5000/
+- Start backend server and open another terminal instance and run frontend with npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Whats missing?
 
-### `npm run eject`
+There are a lot of logic not included for this showcase product which should exist in a real world application. These include, but are not limited to:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Proper authentication
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Currently there is JWT authentication, that pulls the user and company data from the token, but user and company registration should be done in a real world scenario with account activation. Registering users currently requirted the user to be assigned a password and not generated through the JWT.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Password reset and forgot password functionality is also not integrated in this showcase.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Changable grannular permissions
 
-## Learn More
+Currently five set usertypes are allowed for in the Showcase. In a production environment usertypes should be creatable with grannular permissions set based on the usertype.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Unit/integration tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+No testing other than logical testing has been done on this project.
